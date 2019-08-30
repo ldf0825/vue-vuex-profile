@@ -26,8 +26,7 @@ export default {
     name: String,
     value: String,
     error: String,
-    info: String,
-    disabled: String
+    info: String
   }
 };
 </script>

@@ -38,6 +38,42 @@ const route = new Router({
       component: () => import('./views/CreateProfile.vue')
     },
     {
+      path: '/edit-profile',
+      name: 'edit-profile',
+      //懒加载
+      component: () => import('./views/EditProfile.vue')
+    },
+    {
+      path: '/add-experience',
+      name: 'add-experience',
+      //懒加载
+      component: () => import('./views/AddExperience.vue')
+    },
+    {
+      path: '/add-education',
+      name: 'add-education',
+      //懒加载
+      component: () => import('./views/AddEducation.vue')
+    },
+    {
+      path: '/profiles',
+      name: 'profiles',
+      //懒加载
+      component: () => import('./views/Profiles.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      //懒加载
+      component: () => import('./views/Profile.vue')
+    },
+    {
+      path: '/feed',
+      name: 'feed',
+      //懒加载
+      component: () => import('./views/Posts.vue')
+    },
+    {
       path: '/*',
       redirect: "/"
     },

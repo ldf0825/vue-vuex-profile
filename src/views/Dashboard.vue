@@ -6,20 +6,26 @@
           <h1 class="display-4">仪表盘</h1>
           <p v-if="user != null  && profile != null" class="lead text-muted">
             Welcome
-            <router-link :to="'/profile/' + profile.handle">{{user.name}}</router-link>
+            <router-link :to="{name:'profile',params:{handle:profile.handle}}">{{user.name}}</router-link>
           </p>
           <div v-if="profile">
             <ProfileActived />
+
+            <!-- 工作经验和个人经历 -->
+            <Experience @handleDashDelete="handleExpDelete" :experience="profile.experience" />
+
+            <!-- 工作经验和个人经历 -->
+            <Education @handleEduDelete="handleEduDelete" :education="profile.education" />
+
+            <!-- 删除 -->
+            <div style="margin-bottom: 60px;">
+              <button class="btn btn-danger" @click="deleteClick">删除当前账户</button>
+            </div>
           </div>
           <div v-else>
             <p>没有任何您的个人信息，请添加！！！</p>
             <!-- 跳转到添加个人信息的组件中 -->
             <router-link to="/createprofile" class="btn btn-lg btn-info">添加个人信息</router-link>
-          </div>
-
-          <!-- 删除 -->
-          <div v-if="profile != null" style="margin-bottom: 60px;">
-            <button class="btn btn-danger" @click="deleteClick">删除当前账户</button>
           </div>
         </div>
       </div>
@@ -30,10 +36,13 @@
 <script>
 import { mapGetters } from "vuex";
 import ProfileActived from "../components/common/ProfileActived";
+import Experience from "../components/common/Experience";
+import Education from "../components/common/Education";
+
 export default {
   name: "dashboard",
   computed: mapGetters(["user"]),
-  components: { ProfileActived },
+  components: { ProfileActived, Experience, Education },
   data() {
     return {
       profile: null
@@ -73,6 +82,16 @@ export default {
         .catch(err => {
           alert(err.response.data);
         });
+    },
+    handleExpDelete(id) {
+      this.$axios.delete("/api/profile/experience/" + id).then(res => {
+        this.profile = res.data;
+      });
+    },
+    handleEduDelete(id) {
+      this.$axios.delete("/api/profile/education/" + id).then(res => {
+        this.profile = res.data;
+      });
     }
   }
 };

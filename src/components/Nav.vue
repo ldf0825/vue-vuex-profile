@@ -16,6 +16,9 @@
 
         <ul class="navbar-nav ml-auto">
           <li v-if="isLogin" class="nav-item">
+            <router-link class="nav-link" to="/feed">留言</router-link>
+          </li>
+          <li v-if="isLogin" class="nav-item">
             <router-link class="nav-link" to="/dashboard">dashboard</router-link>
           </li>
           <li v-if="!isLogin" class="nav-item">

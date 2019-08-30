@@ -4,6 +4,8 @@ import user from './modules/user'
 import profile from './modules/profile'
 import isLogin from './modules/isLogin'
 import loading from './modules/loading'
+import profiles from './modules/profiles'
+
 
 Vue.use(Vuex)
 
@@ -12,6 +14,7 @@ export default new Vuex.Store({
         user,
         isLogin,
         profile,
-        loading
+        loading,
+        profiles
     }
 })
